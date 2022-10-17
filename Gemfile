@@ -23,14 +23,16 @@ gem "faker", "~> 2.14"
 
 gem "wicked_pdf", "~> 2.1"
 
+# some kind of bug in production if this is not here
+  gem "net-imap", "~> 0.2.3"
+  gem "net-pop", "~> 0.1.1"
+  gem "net-smtp", "~> 0.3.1"
+
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri
 
   gem "brakeman", "~> 5.2"
   gem "decidim-dev", DECIDIM_VERSION
-  gem "net-imap", "~> 0.2.3"
-  gem "net-pop", "~> 0.1.1"
-  gem "net-smtp", "~> 0.3.1"
 end
 
 group :development do
