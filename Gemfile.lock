@@ -1,7 +1,7 @@
 GIT
   remote: https://github.com/AjuntamentdeBarcelona/decidim-module-kids
-  revision: 10889280f56247493bc396581daa6e1b55d2b667
-  branch: system-conf
+  revision: 44bc856bd045f8559837b61b3310ebe097146b94
+  branch: fix/advanced-kids-conf
   specs:
     decidim-kids (0.1.0)
       decidim-core (>= 0.28.0.dev, < 0.29)

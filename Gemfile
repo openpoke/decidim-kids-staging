@@ -13,7 +13,7 @@ gem "decidim", DECIDIM_VERSION
 # gem "decidim-initiatives", DECIDIM_VERSION
 # gem "decidim-templates", DECIDIM_VERSION
 
-gem 'decidim-kids', git: "https://github.com/AjuntamentdeBarcelona/decidim-module-kids", branch: "system-conf"
+gem 'decidim-kids', git: "https://github.com/AjuntamentdeBarcelona/decidim-module-kids", branch: "fix/advanced-kids-conf"
 
 gem "bootsnap", "~> 1.3"
 
