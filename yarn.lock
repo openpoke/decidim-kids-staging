@@ -1193,6 +1193,7 @@
   "resolved" "file:packages/core"
   "version" "0.28.0-dev"
   dependencies:
+    "@hotwired/turbo-rails" "^7.2.0"
     "@picmo/popup-picker" "^5.6.1"
     "@rails/activestorage" "^6.0.4"
     "@tarekraafat/autocomplete.js" "^10.2.6"
@@ -1231,10 +1232,10 @@
     "unfetch" "^3.0.0"
     "uuid" "^3.2.1"
 
-"@decidim/decidim-bulletin_board@0.23.0":
-  "integrity" "sha512-kCFVv8bgq5+7cizkS+PchiWczsmsFAqQ4phbDm99xA+wz0Rq0iG4SpkNij5Xin0bvGDdVOQ1sU5HPlIePheEZQ=="
-  "resolved" "https://registry.npmjs.org/@decidim/decidim-bulletin_board/-/decidim-bulletin_board-0.23.0.tgz"
-  "version" "0.23.0"
+"@decidim/decidim-bulletin_board@0.24.1":
+  "integrity" "sha512-V9/k8oR213AD0GR0c8Ka2z5ExlBeagV46mTadLrrNpdfNUjfJGHTbXsy3xkrf1HaUSPkYZSTns8OphLLPZgCmQ=="
+  "resolved" "https://registry.npmjs.org/@decidim/decidim-bulletin_board/-/decidim-bulletin_board-0.24.1.tgz"
+  "version" "0.24.1"
   dependencies:
     "@apollo/client" "^3.2.7"
     "core-js" "^3.8.3"
@@ -1256,9 +1257,9 @@
   "resolved" "file:packages/elections"
   "version" "0.28.0-dev"
   dependencies:
-    "@decidim/decidim-bulletin_board" "0.23.0"
-    "@decidim/voting_schemes-dummy" "0.23.0"
-    "@decidim/voting_schemes-electionguard" "0.23.0"
+    "@decidim/decidim-bulletin_board" "0.24.1"
+    "@decidim/voting_schemes-dummy" "0.24.1"
+    "@decidim/voting_schemes-electionguard" "0.24.1"
 
 "@decidim/eslint-config@file:packages/eslint-config":
   "resolved" "file:packages/eslint-config"
@@ -1268,15 +1269,15 @@
   "resolved" "file:packages/stylelint-config"
   "version" "0.28.0-dev"
 
-"@decidim/voting_schemes-dummy@0.23.0":
-  "integrity" "sha512-pTXJm6HsL4RmuR9TfKih8iShUk5WK6jZBUESl+T+XDXs4x60Sxi8xJ8GxUb+keTUgYG3hecYnlPez9Okc4WYqw=="
-  "resolved" "https://registry.npmjs.org/@decidim/voting_schemes-dummy/-/voting_schemes-dummy-0.23.0.tgz"
-  "version" "0.23.0"
+"@decidim/voting_schemes-dummy@0.24.1":
+  "integrity" "sha512-KSTH0KI/f+sJsRZLRHSLL3UyhBUFJWSRI471tIJ4/qdfgkx82+ifeKWRcsjW2kKFSgXudhev0IBXP2A+1PJO5Q=="
+  "resolved" "https://registry.npmjs.org/@decidim/voting_schemes-dummy/-/voting_schemes-dummy-0.24.1.tgz"
+  "version" "0.24.1"
 
-"@decidim/voting_schemes-electionguard@0.23.0":
-  "integrity" "sha512-o5/UXRc6v0Cp2BG/MtNpVAEtyNO3VdfFjJSX75E5W7G2yIu7na+D1HZyHyqIk1rgHPqdJmdg0DT7JI16fDcbXQ=="
-  "resolved" "https://registry.npmjs.org/@decidim/voting_schemes-electionguard/-/voting_schemes-electionguard-0.23.0.tgz"
-  "version" "0.23.0"
+"@decidim/voting_schemes-electionguard@0.24.1":
+  "integrity" "sha512-ajuxEtRpuXOGZcd0FUWuzRsEnp6kvO4x0tZK8VoP+s6/08XLYdDhQ361TNfocpCiuO7j8nwk6+WXjKXooaJqIA=="
+  "resolved" "https://registry.npmjs.org/@decidim/voting_schemes-electionguard/-/voting_schemes-electionguard-0.24.1.tgz"
+  "version" "0.24.1"
 
 "@decidim/webpacker@file:packages/webpacker":
   "resolved" "file:packages/webpacker"
@@ -1395,6 +1396,19 @@
   "integrity" "sha512-NQ17ii0rK1b34VZonlmT2QMJFI70m0TRwbknO/ihlbatXyaktDhN/98vBiUU6kNBPljqGqyIrl2T4nY2RpFANg=="
   "resolved" "https://registry.npmjs.org/@graphql-typed-document-node/core/-/core-3.1.1.tgz"
   "version" "3.1.1"
+
+"@hotwired/turbo-rails@^7.2.0":
+  "integrity" "sha512-givDUQqaccd19BvErz1Cf2j6MXF74m0G6I75oqFJGeXAa7vwkz9nDplefVNrALCR9Xi9j9gy32xmSI6wD0tZyA=="
+  "resolved" "https://registry.npmjs.org/@hotwired/turbo-rails/-/turbo-rails-7.2.4.tgz"
+  "version" "7.2.4"
+  dependencies:
+    "@hotwired/turbo" "^7.2.4"
+    "@rails/actioncable" "^7.0"
+
+"@hotwired/turbo@^7.2.4":
+  "integrity" "sha512-c3xlOroHp/cCZHDOuLp6uzQYEbvXBUVaal0puXoGJ9M8L/KHwZ3hQozD4dVeSN9msHWLxxtmPT1TlCN7gFhj4w=="
+  "resolved" "https://registry.npmjs.org/@hotwired/turbo/-/turbo-7.2.4.tgz"
+  "version" "7.2.4"
 
 "@humanwhocodes/config-array@^0.10.5":
   "integrity" "sha512-MDl6D6sBsaV452/QSdX+4CXIjZhIcI0PELsxUjk4U828yd58vk3bTIvk/6w5FY+4hIy9sLW0sfrV7K7Kc++j/w=="
@@ -1729,6 +1743,11 @@
   "version" "5.7.1"
   dependencies:
     "@floating-ui/dom" "^1.0.0"
+
+"@rails/actioncable@^7.0":
+  "integrity" "sha512-tz4oM+Zn9CYsvtyicsa/AwzKZKL+ITHWkhiu7x+xF77clh2b4Rm+s6xnOgY/sGDWoFWZmtKsE95hxBPkgQQNnQ=="
+  "resolved" "https://registry.npmjs.org/@rails/actioncable/-/actioncable-7.0.4.tgz"
+  "version" "7.0.4"
 
 "@rails/activestorage@^6.0.4":
   "integrity" "sha512-h++k8LBLns4O8AqzdaFp1TsCLP9VSc2hgWI37bjzJ+4D995X7Rd8kdkRmXRaNAUlHDJgy6RpnbhBJ5oiIgWTDw=="
