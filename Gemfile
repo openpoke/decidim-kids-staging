@@ -22,6 +22,7 @@ gem "puma", ">= 5.0.0"
 gem "faker", "~> 2.14"
 
 gem "wicked_pdf", "~> 2.1"
+gem "letter_opener_web", "~> 2.0"
 
 # some kind of bug in production if this is not here
   gem "net-imap", "~> 0.2.3"
@@ -36,7 +37,6 @@ group :development, :test do
 end
 
 group :development do
-  gem "letter_opener_web", "~> 2.0"
   gem "listen", "~> 3.1"
   gem "spring", "~> 2.0"
   gem "spring-watcher-listen", "~> 2.0"
