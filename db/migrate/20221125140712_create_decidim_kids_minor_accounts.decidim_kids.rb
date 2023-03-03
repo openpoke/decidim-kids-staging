@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_kids (originally 20221024124523)
 
 class CreateDecidimKidsMinorAccounts < ActiveRecord::Migration[6.1]
@@ -9,6 +10,7 @@ class CreateDecidimKidsMinorAccounts < ActiveRecord::Migration[6.1]
       t.timestamps
     end
 
-    add_index :decidim_kids_minor_accounts, [:decidim_tutor_id, :decidim_minor_id], unique: true, name: "decidim_kids_minor_accounts_unique_tutor_and_minor_ids"
+    add_index :decidim_kids_minor_accounts, [:decidim_tutor_id, :decidim_minor_id], unique: true,
+                                                                                    name: "decidim_kids_minor_accounts_unique_tutor_and_minor_ids"
   end
 end

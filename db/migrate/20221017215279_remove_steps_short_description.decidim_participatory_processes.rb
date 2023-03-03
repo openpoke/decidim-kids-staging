@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_participatory_processes (originally 20170220110740)
 
 class RemoveStepsShortDescription < ActiveRecord::Migration[5.0]
@@ -20,7 +21,7 @@ class RemoveStepsShortDescription < ActiveRecord::Migration[5.0]
 
   def new_description_for(step)
     desc = {}
-    step.description.keys.each do |locale|
+    step.description.each_key do |locale|
       desc[locale] = step.short_description[locale] + step.description[locale]
     end
     desc

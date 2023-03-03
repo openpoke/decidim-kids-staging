@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_participatory_processes (originally 20170125135937)
 
 class RenameAttachableToAttachedTo < ActiveRecord::Migration[5.0]
@@ -9,6 +10,7 @@ class RenameAttachableToAttachedTo < ActiveRecord::Migration[5.0]
     rename_column :decidim_attachments, :attachable_id, :attached_to_id
     rename_column :decidim_attachments, :attachable_type, :attached_to_type
 
-    add_index :decidim_attachments, [:attached_to_id, :attached_to_type], name: "index_decidim_attachments_on_attached_to"
+    add_index :decidim_attachments, [:attached_to_id, :attached_to_type],
+              name: "index_decidim_attachments_on_attached_to"
   end
 end

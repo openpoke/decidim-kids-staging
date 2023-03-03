@@ -9,7 +9,7 @@ class AnotherDummyAuthorizationHandler < Decidim::AuthorizationHandler
   validate :valid_passport_number
 
   def metadata
-    super.merge(passport_number:, postal_code:)
+    super.merge(passport_number: passport_number, postal_code: postal_code)
   end
 
   def unique_id
@@ -19,6 +19,6 @@ class AnotherDummyAuthorizationHandler < Decidim::AuthorizationHandler
   private
 
   def valid_passport_number
-    errors.add(:passport_number, :invalid) unless passport_number.to_s.start_with?('A')
+    errors.add(:passport_number, :invalid) unless passport_number.to_s.start_with?("A")
   end
 end

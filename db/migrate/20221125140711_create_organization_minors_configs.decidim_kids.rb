@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_kids (originally 20221017110422)
 
 class CreateOrganizationMinorsConfigs < ActiveRecord::Migration[5.2]

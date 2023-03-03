@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_proposals (originally 20200120215928)
 
 # This migration must be executed after CreateDecidimEndorsements migration in decidim-core.
@@ -17,7 +18,8 @@ class MoveProposalEndorsementsToCoreEndorsements < ActiveRecord::Migration[5.2]
       "MIN(id) as id, decidim_user_group_id"
     ).group(:decidim_user_group_id).where.not(decidim_user_group_id: nil).map(&:id)
 
-    ProposalEndorsement.where("id IN (?) OR decidim_user_group_id IS NULL", non_duplicated_group_endorsements).find_each do |prop_endorsement|
+    ProposalEndorsement.where("id IN (?) OR decidim_user_group_id IS NULL",
+                              non_duplicated_group_endorsements).find_each do |prop_endorsement|
       Endorsement.create!(
         resource_type: Decidim::Proposals::Proposal.name,
         resource_id: prop_endorsement.decidim_proposal_id,

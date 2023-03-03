@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim (originally 20220629194812)
 
 class CreateDecidimAuthorizationTransfers < ActiveRecord::Migration[6.1]

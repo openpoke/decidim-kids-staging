@@ -24,9 +24,7 @@ Decidim.configure do |config|
   # Restrict access to the system part with an authorized ip list.
   # You can use a single ip like ("1.2.3.4"), or an ip subnet like ("1.2.3.4/24")
   # You may specify multiple ip in an array ["1.2.3.4", "1.2.3.4/24"]
-  if Rails.application.secrets.decidim[:system_accesslist_ips].present?
-    config.system_accesslist_ips = Rails.application.secrets.decidim[:system_accesslist_ips]
-  end
+  config.system_accesslist_ips = Rails.application.secrets.decidim[:system_accesslist_ips] if Rails.application.secrets.decidim[:system_accesslist_ips].present?
 
   # Defines a list of custom content processors. They are used to parse and
   # render specific tags inside some user-provided content. Check the docs for
@@ -35,9 +33,7 @@ Decidim.configure do |config|
 
   # Whether SSL should be enabled or not.
   # if this var is not defined, it is decided automatically per-rails-environment
-  unless Rails.application.secrets.decidim[:force_ssl] == 'auto'
-    config.force_ssl = Rails.application.secrets.decidim[:force_ssl].present?
-  end
+  config.force_ssl = Rails.application.secrets.decidim[:force_ssl].present? unless Rails.application.secrets.decidim[:force_ssl] == "auto"
   # or set it up manually and prevent any ENV manipulation:
   # config.force_ssl = true
 
@@ -115,7 +111,7 @@ Decidim.configure do |config|
     dynamic_provider = Rails.application.secrets.maps[:dynamic_provider]
     dynamic_url = Rails.application.secrets.maps[:dynamic_url]
     static_url = Rails.application.secrets.maps[:static_url]
-    static_url = 'https://image.maps.ls.hereapi.com/mia/1.6/mapview' if static_provider == 'here' && static_url.blank?
+    static_url = "https://image.maps.ls.hereapi.com/mia/1.6/mapview" if static_provider == "here" && static_url.blank?
     config.maps = {
       provider: static_provider,
       api_key: Rails.application.secrets.maps[:static_api_key],
@@ -142,7 +138,7 @@ Decidim.configure do |config|
         # perform a naive type conversion
         config.maps[:dynamic][:tile_layer][key] = case value
                                                   when /^true$|^false$/i
-                                                    value.downcase == 'true'
+                                                    value.downcase == "true"
                                                   when /\A[-+]?\d+\z/
                                                     value.to_i
                                                   else
@@ -159,9 +155,7 @@ Decidim.configure do |config|
   # end
 
   # Currency unit
-  if Rails.application.secrets.decidim[:currency_unit].present?
-    config.currency_unit = Rails.application.secrets.decidim[:currency_unit]
-  end
+  config.currency_unit = Rails.application.secrets.decidim[:currency_unit] if Rails.application.secrets.decidim[:currency_unit].present?
 
   # Workaround to enable SVG assets cors
   config.cors_enabled = Rails.application.secrets.decidim[:cors_enabled].present?
@@ -192,9 +186,7 @@ Decidim.configure do |config|
   config.enable_html_header_snippets = Rails.application.secrets.decidim[:enable_html_header_snippets].present?
 
   # Allow organizations admins to track newsletter links.
-  unless Rails.application.secrets.decidim[:track_newsletter_links] == 'auto'
-    config.track_newsletter_links = Rails.application.secrets.decidim[:track_newsletter_links].present?
-  end
+  config.track_newsletter_links = Rails.application.secrets.decidim[:track_newsletter_links].present? unless Rails.application.secrets.decidim[:track_newsletter_links] == "auto"
 
   # Amount of time that the download your data files will be available in the server.
   config.download_your_data_expiry_time = Rails.application.secrets.decidim[:download_your_data_expiry_time].to_i.days
@@ -214,9 +206,7 @@ Decidim.configure do |config|
   # environments, but in different folders.
   #
   # If not set, it will be ignored.
-  if Rails.application.secrets.decidim[:base_uploads_path].present?
-    config.base_uploads_path = Rails.application.secrets.decidim[:base_uploads_path]
-  end
+  config.base_uploads_path = Rails.application.secrets.decidim[:base_uploads_path] if Rails.application.secrets.decidim[:base_uploads_path].present?
 
   # SMS gateway configuration
   #
@@ -303,9 +293,7 @@ Decidim.configure do |config|
   end
 
   # Sets Decidim::Exporters::CSV's default column separator
-  if Rails.application.secrets.decidim[:default_csv_col_sep].present?
-    config.default_csv_col_sep = Rails.application.secrets.decidim[:default_csv_col_sep]
-  end
+  config.default_csv_col_sep = Rails.application.secrets.decidim[:default_csv_col_sep] if Rails.application.secrets.decidim[:default_csv_col_sep].present?
 
   # The list of roles a user can have, not considering the space-specific roles.
   # config.user_roles = %w(admin user_manager)
@@ -355,15 +343,11 @@ Decidim.configure do |config|
   # Defines the social networking services used for social sharing
   config.social_share_services = Rails.application.secrets.decidim[:social_share_services]
 
-  if Rails.application.secrets.decidim[:redesign_active].present?
-    config.redesign_active = Rails.application.secrets.decidim[:redesign_active]
-  end
+  config.redesign_active = Rails.application.secrets.decidim[:redesign_active] if Rails.application.secrets.decidim[:redesign_active].present?
 
   # Defines the name of the cookie used to check if the user allows Decidim to
   # set cookies.
-  if Rails.application.secrets.decidim[:consent_cookie_name].present?
-    config.consent_cookie_name = Rails.application.secrets.decidim[:consent_cookie_name]
-  end
+  config.consent_cookie_name = Rails.application.secrets.decidim[:consent_cookie_name] if Rails.application.secrets.decidim[:consent_cookie_name].present?
 
   # Defines data consent categories and the data stored in each category.
   # config.consent_categories = [
@@ -408,26 +392,16 @@ Decidim.configure do |config|
                                                                          :repetition_times).presence || 5
 
   # Additional optional configurations (see decidim-core/lib/decidim/core.rb)
-  if Rails.application.secrets.decidim[:cache_key_separator].present?
-    config.cache_key_separator = Rails.application.secrets.decidim[:cache_key_separator]
-  end
-  if Rails.application.secrets.decidim[:expire_session_after].present?
-    config.expire_session_after = Rails.application.secrets.decidim[:expire_session_after].to_i.minutes
-  end
-  unless Rails.application.secrets.decidim[:enable_remember_me] == 'auto'
-    config.enable_remember_me = Rails.application.secrets.decidim[:enable_remember_me].present?
-  end
+  config.cache_key_separator = Rails.application.secrets.decidim[:cache_key_separator] if Rails.application.secrets.decidim[:cache_key_separator].present?
+  config.expire_session_after = Rails.application.secrets.decidim[:expire_session_after].to_i.minutes if Rails.application.secrets.decidim[:expire_session_after].present?
+  config.enable_remember_me = Rails.application.secrets.decidim[:enable_remember_me].present? unless Rails.application.secrets.decidim[:enable_remember_me] == "auto"
   if Rails.application.secrets.decidim[:session_timeout_interval].present?
     config.session_timeout_interval = Rails.application.secrets.decidim[:session_timeout_interval].to_i.seconds
   end
   config.follow_http_x_forwarded_host = Rails.application.secrets.decidim[:follow_http_x_forwarded_host].present?
   config.maximum_conversation_message_length = Rails.application.secrets.decidim[:maximum_conversation_message_length].to_i
-  if Rails.application.secrets.decidim[:password_blacklist].present?
-    config.password_blacklist = Rails.application.secrets.decidim[:password_blacklist]
-  end
-  if Rails.application.secrets.decidim[:allow_open_redirects].present?
-    config.allow_open_redirects = Rails.application.secrets.decidim[:allow_open_redirects]
-  end
+  config.password_blacklist = Rails.application.secrets.decidim[:password_blacklist] if Rails.application.secrets.decidim[:password_blacklist].present?
+  config.allow_open_redirects = Rails.application.secrets.decidim[:allow_open_redirects] if Rails.application.secrets.decidim[:allow_open_redirects].present?
 end
 
 if Decidim.module_installed? :api
@@ -458,7 +432,7 @@ if Decidim.module_installed? :meetings
     if Rails.application.secrets.dig(:decidim, :meetings, :embeddable_services).present?
       config.embeddable_services = Rails.application.secrets.dig(:decidim, :meetings, :embeddable_services)
     end
-    unless Rails.application.secrets.dig(:decidim, :meetings, :enable_proposal_linking) == 'auto'
+    unless Rails.application.secrets.dig(:decidim, :meetings, :enable_proposal_linking) == "auto"
       config.enable_proposal_linking = Rails.application.secrets.dig(:decidim, :meetings,
                                                                      :enable_proposal_linking).present?
     end
@@ -467,7 +441,7 @@ end
 
 if Decidim.module_installed? :budgets
   Decidim::Budgets.configure do |config|
-    unless Rails.application.secrets.dig(:decidim, :budgets, :enable_proposal_linking) == 'auto'
+    unless Rails.application.secrets.dig(:decidim, :budgets, :enable_proposal_linking) == "auto"
       config.enable_proposal_linking = Rails.application.secrets.dig(:decidim, :budgets,
                                                                      :enable_proposal_linking).present?
     end
@@ -476,7 +450,7 @@ end
 
 if Decidim.module_installed? :accountability
   Decidim::Accountability.configure do |config|
-    unless Rails.application.secrets.dig(:decidim, :accountability, :enable_proposal_linking) == 'auto'
+    unless Rails.application.secrets.dig(:decidim, :accountability, :enable_proposal_linking) == "auto"
       config.enable_proposal_linking = Rails.application.secrets.dig(:decidim, :accountability,
                                                                      :enable_proposal_linking).present?
     end
@@ -492,7 +466,7 @@ end
 
 if Decidim.module_installed? :initiatives
   Decidim::Initiatives.configure do |config|
-    unless Rails.application.secrets.dig(:decidim, :initiatives, :creation_enabled) == 'auto'
+    unless Rails.application.secrets.dig(:decidim, :initiatives, :creation_enabled) == "auto"
       config.creation_enabled = Rails.application.secrets.dig(:decidim, :initiatives, :creation_enabled).present?
     end
     config.similarity_threshold = Rails.application.secrets.dig(:decidim, :initiatives,
@@ -511,7 +485,7 @@ if Decidim.module_installed? :initiatives
                                                                        :stats_cache_expiration_time).to_i.minutes
     config.max_time_in_validating_state = Rails.application.secrets.dig(:decidim, :initiatives,
                                                                         :max_time_in_validating_state).to_i.days
-    unless Rails.application.secrets.dig(:decidim, :initiatives, :print_enabled) == 'auto'
+    unless Rails.application.secrets.dig(:decidim, :initiatives, :print_enabled) == "auto"
       config.print_enabled = Rails.application.secrets.dig(:decidim, :initiatives, :print_enabled).present?
     end
     config.do_not_require_authorization = Rails.application.secrets.dig(:decidim, :initiatives,
@@ -545,4 +519,4 @@ Rails.application.config.i18n.available_locales = Decidim.available_locales
 Rails.application.config.i18n.default_locale = Decidim.default_locale
 
 # Inform Decidim about the assets folder
-Decidim.register_assets_path File.expand_path('app/packs', Rails.application.root)
+Decidim.register_assets_path File.expand_path("app/packs", Rails.application.root)

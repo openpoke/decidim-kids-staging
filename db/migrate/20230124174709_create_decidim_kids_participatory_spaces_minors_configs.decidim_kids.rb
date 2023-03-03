@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_kids (originally 20221220132306)
 
 class CreateDecidimKidsParticipatorySpacesMinorsConfigs < ActiveRecord::Migration[6.1]

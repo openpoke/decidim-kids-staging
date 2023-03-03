@@ -19,7 +19,7 @@ class FixNicknameIndex < ActiveRecord::Migration[5.1]
     end
 
     User.where(nickname: nil).update_all("nickname = ''")
-        change_column_default :decidim_users, :nickname, ''
+    change_column_default :decidim_users, :nickname, ""
     change_column_null(:decidim_users, :nickname, false)
   end
 end

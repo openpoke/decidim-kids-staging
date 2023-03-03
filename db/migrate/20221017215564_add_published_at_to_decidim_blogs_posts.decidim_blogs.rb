@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_blogs (originally 20220812122940)
 
 class AddPublishedAtToDecidimBlogsPosts < ActiveRecord::Migration[6.1]
@@ -11,7 +12,7 @@ class AddPublishedAtToDecidimBlogsPosts < ActiveRecord::Migration[6.1]
 
     reversible do |direction|
       direction.up do
-        Post.update_all("published_at = created_at") # rubocop:disable Rails/SkipsModelValidations
+        Post.update_all("published_at = created_at")
       end
     end
   end

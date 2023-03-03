@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # This migration comes from decidim_budgets (originally 20200714103519)
 
 class MoveBudgetsToOwnModel < ActiveRecord::Migration[5.2]
@@ -34,8 +35,10 @@ class MoveBudgetsToOwnModel < ActiveRecord::Migration[5.2]
   end
 
   def down
-    add_column :decidim_budgets_projects, :decidim_component_id, :integer, index: true
-    add_column :decidim_budgets_orders, :decidim_component_id, :integer, index: true
+    add_column :decidim_budgets_projects, :decidim_component_id, :integer
+    add_index :decidim_budgets_projects, :decidim_component_id
+    add_column :decidim_budgets_orders, :decidim_component_id, :integer
+    add_index :decidim_budgets_orders, :decidim_component_id
 
     Budget.find_each do |resource|
       revert_budget_to_component(resource)
@@ -66,17 +69,13 @@ class MoveBudgetsToOwnModel < ActiveRecord::Migration[5.2]
   end
 
   def add_budget_references_to_projects(resource)
-    # rubocop:disable Rails/SkipsModelValidations
     Project.where(decidim_component_id: resource.decidim_component_id)
            .update_all(decidim_budgets_budget_id: resource.id)
-    # rubocop:enable Rails/SkipsModelValidations
   end
 
   def add_budget_reference_to_orders(resource)
-    # rubocop:disable Rails/SkipsModelValidations
     Order.where(decidim_component_id: resource.decidim_component_id)
          .update_all(decidim_budgets_budget_id: resource.id)
-    # rubocop:enable Rails/SkipsModelValidations
   end
 
   # down methods
@@ -95,16 +94,12 @@ class MoveBudgetsToOwnModel < ActiveRecord::Migration[5.2]
   end
 
   def add_component_reference_to_orders(resource)
-    # rubocop:disable Rails/SkipsModelValidations
     Order.where(decidim_budgets_budget_id: resource.id)
          .update_all(decidim_component_id: resource.decidim_component_id)
-    # rubocop:enable Rails/SkipsModelValidations
   end
 
   def add_component_reference_to_projects(resource)
-    # rubocop:disable Rails/SkipsModelValidations
     Project.where(decidim_budgets_budget_id: resource.id)
            .update_all(decidim_component_id: resource.decidim_component_id)
-    # rubocop:enable Rails/SkipsModelValidations
   end
 end
