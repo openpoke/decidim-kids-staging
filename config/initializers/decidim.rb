@@ -338,12 +338,7 @@ Decidim.configure do |config|
   #   end
   # end
   #
-  # config.machine_translation_service = "MyTranslationService"
-
-  # Defines the social networking services used for social sharing
-  config.social_share_services = Rails.application.secrets.decidim[:social_share_services]
-
-  config.redesign_active = Rails.application.secrets.decidim[:redesign_active] if Rails.application.secrets.decidim[:redesign_active].present?
+  config.machine_translation_service = 'Decidim::Dev::DummyTranslator'
 
   # Defines the name of the cookie used to check if the user allows Decidim to
   # set cookies.
@@ -385,9 +380,9 @@ Decidim.configure do |config|
     config.admin_password_strong = strong_pw.nil? ? true : strong_pw.present?
   end
   config.admin_password_expiration_days = Rails.application.secrets.dig(:decidim, :admin_password,
-                                                                        :expiration_days).presence || 90
+                                                                        :expiration_days).presence || 360
   config.admin_password_min_length = Rails.application.secrets.dig(:decidim, :admin_password,
-                                                                   :min_length).presence || 15
+                                                                   :min_length).presence || 10
   config.admin_password_repetition_times = Rails.application.secrets.dig(:decidim, :admin_password,
                                                                          :repetition_times).presence || 5
 
